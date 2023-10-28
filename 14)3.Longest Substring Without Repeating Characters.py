@@ -2,24 +2,46 @@
 
 class Solution:
     def lengthOfLongestSubstring(s: str) -> int:
-        arr = []
-        for i in s:
-            arr.append(i)
-        
-        res = []
+        res = 0
         string = ''
-        for i in range(1, len(arr)):
-            if arr[i-1] != arr[i]:
-                string += arr[i-1]
-                continue
 
-            if arr[i-1] == arr[i]:
-                res.append(string)
-                i += 1
-                continue
+        if s == " ":
+            return 1
 
-        return string
+        for i in s:
+            # 중복 문자 X
+            if i not in string:
+                      res = 0
+        string = ''
+
+        if s == " ":
+            return 1
+
+        for i in s:
+            # 중복 문자 X
+            if i not in string:
+                string += i
+                res = max(res, len(string))
+                continue
+            # 중복 문자 O
+            if i in string:
+                # 중복문자의 인덱스 저장
+                idx = string.index(i)
+                 # string을 idx 다음부터 잘라내고 문자 i를 이어붙여 새로운 string 만들기
+                string = string[idx+1:] + i
+                res = max(len(string), res)  string += i
+                res = max(res, len(string))
+                continue
+            # 중복 문자 O
+            if i in string:
+                # 중복문자의 인덱스 저장
+                idx = string.index(i)
+                 # string을 idx 다음부터 잘라내고 문자 i를 이어붙여 새로운 string 만들기
+                string = string[idx+1:] + i
+                res = max(len(string), res)
+
+        return res
 
 a = Solution
-s = "pwwkew"
+s = "dvdf"
 print(a.lengthOfLongestSubstring(s))
