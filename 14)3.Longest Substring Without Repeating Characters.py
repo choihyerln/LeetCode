@@ -29,7 +29,8 @@ class Solution:
                 idx = string.index(i)
                  # string을 idx 다음부터 잘라내고 문자 i를 이어붙여 새로운 string 만들기
                 string = string[idx+1:] + i
-                res = max(len(string), res)  string += i
+                res = max(len(string), res)  
+                string += i
                 res = max(res, len(string))
                 continue
             # 중복 문자 O
